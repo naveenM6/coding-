@@ -1,0 +1,94 @@
+#include<stdio.h>
+int main()
+{
+    int n,i,j=0,sum=0,temp=0,carry=0;
+    scanf("%d",&n);
+    int arr[n],b[n];
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&arr[i]);
+    }
+    for(i=0;i<n;i++)
+    {
+        if(i==0&&arr[i]==0)
+        {
+            if(arr[i]==0)
+            temp=0;
+            else
+            b[j++]=arr[i+1];
+        }
+        else 
+        {
+            b[j++]=arr[i];
+        }
+    }
+    b[j-1]=b[j-1]+1;
+    carry=b[j-1]/10;
+    b[j-1]=b[j-1]%10;
+    //printf("%d\n",carry);
+    for(i=j-2;i>=0;i--)
+    {
+        if(carry==1)
+        {
+            b[i]+=1;
+            carry=b[i]/10;
+            b[i]=b[i]%10;
+        }
+        else
+        {
+            b[i]=b[i];
+        }
+    }
+    if(carry==1)
+    {
+    printf("%d ",carry);
+    }
+    for(i=0;i<j;i++)
+    {
+        printf("%d ",b[i]);
+    }
+}
+ 
+ 
+ 
+ 
+ 
+ another method
+ *#include<stdio.h>
+int main()
+{
+    int n,i,temp,temp1=0,j=0;
+    scanf("%d",&n);
+    int a[n],b[n];
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&temp);
+        temp1=temp1+temp;
+        if(temp1>0)
+        {
+            b[j++]=temp;
+        }
+    }
+    b[j-1]=b[j-1]+1;
+    for(i=j-1;i>=0;i--)
+    {
+        if(b[i]==10 && i!=0)
+        {
+            b[i]=0;
+            b[i-1]=b[i-1]+1;
+        }
+    }
+    for(i=0;i<j;i++)
+    { 
+        if(b[i]==10)
+        {
+            printf("1 0 ");
+        }
+        else
+        printf("%d ",b[i]);
+    }
+}
+
+
+
+
