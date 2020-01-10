@@ -1,0 +1,30 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    char st[10000];
+    scanf("%[^\n]",st);
+    int i,j,k=0,l;
+    l=strlen(st);
+    int b[10000];
+    for(i=l-1;i>=0;i--)
+    {
+        if(st[i]!='.')
+        {
+            b[k++]=st[i];
+        }
+        else
+        {
+            for(j=k-1;j>=0;j--)
+            {
+                printf("%c",b[j]);
+            }
+            printf(".");
+            k=0;
+        }
+    }
+    for(j=k-1;j>=0;j--)
+    {
+        printf("%c",b[j]);
+    }
+}
