@@ -1,0 +1,49 @@
+#include<stdio.h>
+int main()
+{
+    long long int n,k,i,j,x,y,r,s;
+    scanf("%lld",&n);
+    long long int arr[n][n],b[n][n];
+    for(i=0;i<n;i++)
+    {
+        for(j=0;j<n;j++)
+        {
+            scanf("%lld",&arr[i][j]);
+        }
+    }
+    scanf("%lld",&k);
+    for(i=0;i<n;i++)
+    {
+        for(j=0;j<n;j++)
+        {
+            b[i][j]=0;
+            //printf("%d",b[i][j]);
+        }
+       // printf("\n");
+    }
+    for(i=0;i<=n-k;i++)
+    {
+        for(j=0;j<=n-k;j++)
+        {
+            //printf("%d",arr[i][j]);
+            for(x=i,r=0;x<k+i;x++,r++)
+            {
+                for(y=j,s=0;y<k+j;y++,s++)
+                {
+                    b[r][s]+=arr[x][y];
+                   //printf("%lld ",arr[x][y]);
+                }
+                //printf("\n");
+            }
+            //printf("\n");
+        }
+    }
+    for(x=0;x<k;x++)
+    {
+        for(y=0;y<k;y++)
+        {
+            printf("%lld ",b[x][y]);
+        }
+        printf("\n");
+    }
+}
