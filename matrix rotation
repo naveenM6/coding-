@@ -1,0 +1,86 @@
+#include<stdio.h>
+int main()
+{
+    int n,i,j,r,t,s,x,y,z,k,l,td=0,rem=0;
+    scanf("%d",&n);
+    int a[n][n],b[n][n],temp[n][n];
+    for(i=0;i<n;i++)
+    {
+        for(j=0;j<n;j++)
+        {
+            scanf("%d",&a[i][j]);
+            b[i][j]=a[i][j];
+        }
+    }
+    while(1)
+    {
+        char ch;
+        scanf(" %c ",&ch);
+        if(ch=='R')
+        {
+            scanf("%d",&s);
+            td+=s;
+            rem=s/90;
+            while(rem--)
+            {
+            for(i=0,r=0;i<n;r++,i++)
+            {
+                for(j=n-1,t=0;j>=0;j--,t++)
+                {
+                    temp[r][t]=b[j][i];
+                }
+            }
+            for(i=0;i<n;i++)
+            {
+                for(j=0;j<n;j++)
+                {
+                    b[i][j]=temp[i][j];
+                }
+            }
+            }
+        }
+        else if(ch=='U')
+        {
+            scanf("%d %d %d",&x,&y,&z);
+            for(i=0;i<n;i++)
+            {
+                for(j=0;j<n;j++)
+                {
+                    temp[i][j]=a[i][j];
+                }
+            }
+            temp[x][y]=z;
+            b[x][y]=z;
+            rem=td/90;
+            while(rem--)
+            {
+                for(i=0,r=0;i<n;r++,i++)
+                {
+                    for(t=0,j=n-1;j>=0;j--,t++)
+                    {
+                        b[r][t]=temp[j][i];
+                        //printf("%d ",b[r][t]);
+                    }
+                  //  printf("\n");
+                }
+                for(i=0;i<n;i++)
+                {
+                    for(j=0;j<n;j++)
+                    {
+                        temp[i][j]=b[i][j];
+                    }
+                }
+            }
+        }
+        else if(ch=='Q')
+        {
+            scanf("%d %d",&k,&l);
+            printf("%d\n",b[k][l]);
+        }
+        else
+        break;
+    }
+}
+
+
+
