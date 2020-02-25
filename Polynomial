@@ -1,0 +1,61 @@
+def multiply_terms(term_1, term_2):
+    new_c = term_1[1] * term_2[1]
+    new_e = term_1[0] + term_2[0]
+    return (new_c, new_e)
+
+
+def multpoly(p1, p2):
+    result_poly = []
+    for term_1 in p1:
+        for term_2 in p2:
+            result_poly.append(multiply_terms(term_1, term_2))
+    collected_terms = []
+    exps=[]
+    for term in result_poly:
+        if term[1] not in exps:
+            exps.append(term[1])
+            
+    for e in exps:
+        count = 0
+        for term in result_poly:
+            if term[1] == e:
+                count += term[0]
+        collected_terms.append((count, e))
+    return collected_terms
+
+
+
+m=int(input())
+p1,c1=[],[]
+for i  in range(m):
+    s=tuple(map(int,input().split()))
+    p1.append(s)
+
+#p1.sort()
+n=int(input())
+p2,c2=[],[]
+
+for i  in range(n):
+    s1=tuple(map(int,input().split()))
+    p2.append(s1)
+    
+p2.sort()
+z=multpoly(p1, p2)
+
+z.reverse()
+
+for i in z:
+    ind=z.index(i)
+    if ind>0 and i[0]>0:
+        print(" + ",end="")
+    elif ind>0 and i[0]<0:
+        print(" - ",end="")
+   
+    if  i[0]!=0:
+        if i[0]<0:
+            print(abs(i[0]),end="")
+        else:
+            print(i[0],end="")
+        
+    if  i[0]!=0 and i[1]!=0:
+        print("x^%s"%i[1],end="")
